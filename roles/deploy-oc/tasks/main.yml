@@ -1,0 +1,26 @@
+---
+- name: Creates Directory
+  file: path=/var/www/html state=directory
+
+- name: Extract OpenCart Application
+  unarchive:
+    src: opencart.zip
+    dest: /var/www/html/
+
+- name: Copy Config File
+  template:
+    src: config.php.j2
+    dest: /var/www/html/config.php
+    mode: 0755
+
+- name: Copy Config File For Admin
+  template:
+    src: admin-config.php.j2
+    dest: /var/www/html/admin/config.php
+    mode: 0755
+    
+- name: Set Apache Directory Permissions
+  file: dest=/var/www/html owner=apache group=apache recurse=yes
+
+- name: Restart Apache Server
+  service: name=httpd state=restarted enabled=yes

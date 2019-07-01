@@ -1,0 +1,8 @@
+---
+  - hosts: app
+    become: true
+    roles:
+      - install-php
+      - install-apache
+      - deploy-oc
+      - install-mysql
