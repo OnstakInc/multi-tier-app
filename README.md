@@ -5,9 +5,9 @@
 * Ansible should be pre-installed on the control machine
 
 #### Installation Guide
-1). Navigate to the main repository directory
-2). Add you application hosts to inventory file
-3). Also add username and password for all the hosts i.e. inventory/hosts
+* Navigate to the main repository directory
+* Add you application hosts to inventory file
+* Also add username and password for all the hosts i.e. inventory/hosts
 ```
 [lb]
 10.39.115.213
@@ -23,7 +23,7 @@ ansible_user=root
 ansible_password=123456778
 ansible_sudo_pass=12345678
 ```
-4). Run the following command to initialize the deployment
+* Run the following command to initialize the deployment
 ```
 ansible-playbook playbooks/deploy.yml
 ```
