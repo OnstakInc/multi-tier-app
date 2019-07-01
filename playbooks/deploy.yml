@@ -1,8 +1,18 @@
 ---
+  - hosts: lb
+    become: true
+    roles:
+      - install-nginx
+
   - hosts: app
     become: true
     roles:
       - install-php
       - install-apache
       - deploy-oc
+      - install-mysql
+
+  - hosts: db
+    become: true
+    roles:
       - install-mysql
