@@ -27,7 +27,7 @@ ansible_sudo_pass=12345678
 ```
 ansible-playbook playbooks/deploy.yml
 ```
-Note: You can also provide username and password while executing playbooks
+* Note: You can also provide username and password while executing playbooks
 ```
 ansible-playbook playbooks/deploy.yml --extra-vars "ansible_user=root ansible_password=your-password ansible_sudo_pass=sudo-password"
 ```
