@@ -10,7 +10,6 @@
       - install-php
       - install-apache
       - deploy-oc
-      - install-mysql
 
   - hosts: db
     become: true
