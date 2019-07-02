@@ -5,6 +5,16 @@
 - name: Install Apache HTTP Server
   yum: name=httpd state=present update_cache=yes
 
+- name: Set SeLinux To Permissive
+  shell: setenforce 0
+  ignore_errors: yes
+
+- name: Update SeLinux Configurations
+  lineinfile: 
+    dest: /etc/selinux/config
+    regexp: '^SELINUX=enforcing$' 
+    line: 'SELINUX=disabled'
+
 - name: Start and Enable Apache HTTP Service
   service: name=httpd state=started enabled=yes
 

@@ -37,6 +37,7 @@
 
 - name: Set SeLinux To Permissive
   shell: setenforce 0
+  ignore_errors: yes
 
 - name: Update SeLinux Configurations
   lineinfile: 
