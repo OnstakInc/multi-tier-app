@@ -1,4 +1,7 @@
 ---
+- name: Update OS Packages
+  command: yum update -y
+
 - name: Add EPEL Release Repositories
   yum: name=epel-release state=present
 
