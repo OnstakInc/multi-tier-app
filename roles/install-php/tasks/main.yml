@@ -24,20 +24,20 @@
     - php-fileinfo
     - php-gearman
 
-- name: Install Required PHP Packages
-  yum: name={{packages}} state=present enablerepo=remi-php73 update_cache=yes
-  vars:
-    packages:
-    - php-dom
-    - php-http
-    - php-pgsql
-    - php-posix
-    - php-redis
-    - php-simplexml
-    - php-soap
-    - php-xml
-    - php-xmlreader
-    - php-xmlwriter
+# - name: Install Required PHP Packages
+#   yum: name={{packages}} state=present enablerepo=remi-php73 update_cache=yes
+#   vars:
+#     packages:
+#     - php-dom
+#     - php-http
+#     - php-pgsql
+#     - php-posix
+#     - php-redis
+#     - php-simplexml
+#     - php-soap
+#     - php-xml
+#     - php-xmlreader
+#     - php-xmlwriter
 
 # - name: Update PHP Timezone
 #   command: sed -i 's/;date.timezone =/date.timezone = America\/Los_Angeles/g' /etc/php.ini
