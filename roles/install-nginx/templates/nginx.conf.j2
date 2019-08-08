@@ -35,6 +35,12 @@ http {
     # for more information.
     include /etc/nginx/conf.d/*.conf;
 
+    upstream myapp01 {
+        {% for node in groups['app'] %}
+            server {{ node }}:80;
+        {% endfor %}
+    }
+
     server {
         listen       80 default_server;
         listen       [::]:80 default_server;
@@ -49,7 +55,7 @@ http {
             proxy_set_header host $host;
             proxy_set_header X-real-ip $remote_addr;
             proxy_set_header X-forward-for $proxy_add_x_forwarded_for;
-            proxy_pass http://{{ groups['app'][0] }}:80/;
+            proxy_pass http://myapp01/;
         }
 
         error_page 404 /404.html;
