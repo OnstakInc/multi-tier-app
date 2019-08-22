@@ -11,6 +11,11 @@
       - install-apache
       - deploy-oc
 
+  - hosts: cache
+    become: true
+    roles:
+      - install-redis
+
   - hosts: db
     become: true
     roles:

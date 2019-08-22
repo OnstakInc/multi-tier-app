@@ -1,0 +1,34 @@
+---
+- name: Update OS Packages
+  command: yum update -y
+  
+- name: Add EPEL Release Repositories
+  yum: name=https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm state=present
+
+- name: Install Redis Cache
+  yum: name=redis state=present
+
+- name: Install Redis Cache
+  lineinfile: 
+    dest: /etc/redis.conf
+    regexp: "^bind"
+    line: "bind {{ groups['cache'][0] }}"
+
+- name: Start and Enable MySQL Service
+  service: name=redis state=restarted enabled=yes
+
+- name: Set SeLinux To Permissive
+  shell: setenforce 0
+  ignore_errors: yes
+
+- name: Update SeLinux Configurations
+  lineinfile: 
+    dest: /etc/selinux/config
+    regexp: '^SELINUX=enforcing$' 
+    line: 'SELINUX=disabled'
+
+- name: Add Redis Cache Firewall Rule
+  firewalld: port=6379/tcp permanent=true state=enabled zone=public
+
+- name: Reload Firewalld Service
+  command: "firewall-cmd --reload"

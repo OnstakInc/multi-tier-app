@@ -29,16 +29,4 @@
   vars:
     packages:
     - php-redis
-    # - php-dom
-    # - php-http
-    # - php-pgsql
-    # - php-posix
-    # - php-simplexml
-    # - php-soap
-    # - php-xml
-    # - php-xmlreader
-    # - php-xmlwriter
-
-# - name: Update PHP Timezone
-#   command: sed -i 's/;date.timezone =/date.timezone = America\/Los_Angeles/g' /etc/php.ini
-
+    
