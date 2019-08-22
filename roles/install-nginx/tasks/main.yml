@@ -1,10 +1,4 @@
 ---
-- name: Update OS Packages
-  command: yum update -y
-  
-- name: Add EPEL Release Repositories
-  yum: name=https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm state=present
-
 - name: Install NGINX Server
   yum: name=nginx state=present update_cache=yes
 
