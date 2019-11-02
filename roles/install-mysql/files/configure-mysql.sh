@@ -1,5 +1,7 @@
 #!/bin/bash
 
+mysql -uadmin -p"Onstak@123" -e "DROP DATABASE IF EXISTS opencart_db" --connect-expired-password
+
 mysql -uroot -p"$(sudo grep -oP "temporary password is generated for root@localhost: \K(.*)" /var/log/mysqld.log)" -e "ALTER USER 'root'@'localhost' IDENTIFIED BY 'Onstak@123'; FLUSH PRIVILEGES;" --connect-expired-password
 
 mysql -uroot -p"Onstak@123" -e "CREATE USER 'admin'@'%' IDENTIFIED BY 'Onstak@123'; FLUSH PRIVILEGES;" --connect-expired-password
