@@ -29,10 +29,10 @@
 - name: Configure iptables Rules
   block:
     - name: Allow HTTP Port 80
-      iptables: chain=INPUT protocol=tcp match=tcp destination_port=80 jump=ACCEPT comment=Open port 80 for HTTP
+      iptables: chain=INPUT protocol=tcp match=tcp destination_port=80 jump=ACCEPT comment="Open port 80 for HTTP"
 
     - name: Allow HTTPS Port 443
-      iptables: chain=INPUT protocol=tcp match=tcp destination_port=443 jump=ACCEPT comment=Open port 443 for HTTPS
+      iptables: chain=INPUT protocol=tcp match=tcp destination_port=443 jump=ACCEPT comment="Open port 443 for HTTPS"
 
     - name: Reload iptables Service
       command: "service iptables save"
