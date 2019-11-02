@@ -26,13 +26,8 @@
 
 - name: Update MySQL Configuration For CentOS 6
   block:
-    - name: Check If MySQL Configuration For CentOS 6 Already Exists
-      shell: grep "^skip-name-resolve" /etc/my.cnf
-      register: find_name_resolve
-
     - name: Update MySQL Configuration For CentOS 6
-      lineinfile: dest=/etc/my.cnf insertafter='^[mysqld]$' line='skip-name-resolve'
-      when: find_name_resolve.stdout != ""
+      copy: src=centos-6.my.cnf dest=/etc/my.cnf mode=0644
 
   when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "6") or 
         (ansible_facts['distribution'] == "RHEL" and ansible_facts['distribution_major_version'] == "6")
