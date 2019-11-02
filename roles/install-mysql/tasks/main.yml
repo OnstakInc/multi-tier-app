@@ -24,6 +24,14 @@
 - name: Remove Old Log Directory
   file: path=/var/log/mysqld.log state=absent
 
+- name: Update MySQL Configuration For CentOS 6
+  block:
+    - name: Update MySQL Configuration For CentOS 6
+      lineinfile: dest=/etc/my.cnf insertafter='^[mysqld]$' line='skip-name-resolve'
+
+  when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "6") or 
+        (ansible_facts['distribution'] == "RHEL" and ansible_facts['distribution_major_version'] == "6")
+
 - name: Start and Enable MySQL Service
   service: name=mysqld state=restarted enabled=yes
 
