@@ -7,7 +7,10 @@
   ignore_errors: yes
 
 - name: Update SeLinux Configurations
-  lineinfile: dest=/etc/selinux/config regexp='^SELINUX=enforcing$' line='SELINUX=disabled'
+  lineinfile: 
+    dest: /etc/selinux/config 
+    regexp: '^SELINUX=enforcing$' 
+    line: 'SELINUX=disabled'
 
 - name: Start and Enable Apache HTTP Service
   service: name=httpd state=started enabled=yes

@@ -1,7 +1,7 @@
 ---
 - name: Add PHP Repositories For CentOS 6
   block:
-    - name: Add PHP Repositories
+    - name: Add PHP Repositories For CentOS 6
       yum: name=http://rpms.remirepo.net/enterprise/remi-release-6.rpm state=present update_cache=yes
 
   when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "6") or 
@@ -9,7 +9,7 @@
 
 - name: Add PHP Repositories For CentOS 7
   block:
-    - name: Add PHP Repositories
+    - name: Add PHP Repositories For CentOS 7
       yum: name=http://rpms.remirepo.net/enterprise/remi-release-7.rpm state=present update_cache=yes
 
   when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7") or 
