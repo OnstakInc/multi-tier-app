@@ -21,8 +21,24 @@
     regexp: '^SELINUX=enforcing$' 
     line: 'SELINUX=disabled'
 
-- name: Add Redis Cache Firewall Rule
-  firewalld: port=6379/tcp permanent=true state=enabled zone=public
+- name: Configure firewalld Rules
+  block:
+    - name: Allow MySQL Port 6379
+      firewalld: port=6379/tcp permanent=true state=enabled zone=public
 
-- name: Reload Firewalld Service
-  command: "firewall-cmd --reload"
+    - name: Reload firewalld Service
+      command: "firewall-cmd --reload"
+
+  when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7") or 
+        (ansible_facts['distribution'] == "RHEL" and ansible_facts['distribution_major_version'] == "7")
+
+- name: Configure iptables Rules
+  block:
+    - name: Allow MySQL Port 6379
+      iptables: chain=INPUT protocol=tcp match=tcp destination_port=6379 jump=ACCEPT comment=Open port 6379 for MysQL
+
+    - name: Reload iptables Service
+      command: "service iptables save"
+
+  when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "6") or 
+        (ansible_facts['distribution'] == "RHEL" and ansible_facts['distribution_major_version'] == "6")

@@ -1,29 +1,21 @@
 ---
-- name: Add Unzip Tools
+- name: Add Unzip Package
   yum: name=unzip state=present
 
-- name: Add Wget Tools
+- name: Add Wget Package
   yum: name=wget state=present
 
 - name: Creates Directory
   file: path=/var/www/html state=directory
 
 - name: Extract OpenCart Application
-  unarchive:
-    src: opencart.zip
-    dest: /var/www/html/
+  unarchive: src=opencart.zip dest=/var/www/html/
 
 - name: Copy Config File
-  template:
-    src: config.php.j2
-    dest: /var/www/html/config.php
-    mode: 0755
+  template: src=config.php.j2 dest=/var/www/html/config.php mode=0755
 
 - name: Copy Config File For Admin
-  template:
-    src: admin-config.php.j2
-    dest: /var/www/html/admin/config.php
-    mode: 0755
+  template: src=admin-config.php.j2 dest=/var/www/html/admin/config.php mode=0755
     
 - name: Set Apache Directory Permissions
   file: dest=/var/www/html owner=apache group=apache recurse=yes

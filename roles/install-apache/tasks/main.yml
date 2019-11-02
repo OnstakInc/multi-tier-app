@@ -7,19 +7,35 @@
   ignore_errors: yes
 
 - name: Update SeLinux Configurations
-  lineinfile: 
-    dest: /etc/selinux/config
-    regexp: '^SELINUX=enforcing$' 
-    line: 'SELINUX=disabled'
+  lineinfile: dest=/etc/selinux/config regexp='^SELINUX=enforcing$' line='SELINUX=disabled'
 
 - name: Start and Enable Apache HTTP Service
   service: name=httpd state=started enabled=yes
 
-- name: Add HTTP Firewall Rule
-  firewalld: port=80/tcp permanent=true state=enabled zone=public
+- name: Configure firewalld Rules
+  block:
+    - name: Allow HTTP Port 80
+      firewalld: port=80/tcp permanent=true state=enabled zone=public
 
-- name: Add HTTPS Firewall Rule
-  firewalld: port=443/tcp permanent=true state=enabled zone=public
+    - name: Add HTTPS Port 443
+      firewalld: port=443/tcp permanent=true state=enabled zone=public
 
-- name: Reload Firewalld Service
-  command: "firewall-cmd --reload"
+    - name: Reload firewalld Service
+      command: "firewall-cmd --reload"
+
+  when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7") or 
+        (ansible_facts['distribution'] == "RHEL" and ansible_facts['distribution_major_version'] == "7")
+
+- name: Configure iptables Rules
+  block:
+    - name: Allow HTTP Port 80
+      iptables: chain=INPUT protocol=tcp match=tcp destination_port=80 jump=ACCEPT comment=Open port 80 for HTTP
+
+    - name: Allow HTTPS Port 443
+      iptables: chain=INPUT protocol=tcp match=tcp destination_port=443 jump=ACCEPT comment=Open port 443 for HTTPS
+
+    - name: Reload iptables Service
+      command: "service iptables save"
+
+  when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "6") or 
+        (ansible_facts['distribution'] == "RHEL" and ansible_facts['distribution_major_version'] == "6")
