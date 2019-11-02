@@ -1,4 +1,7 @@
 ---
+- name: Install Ansible Dependencies
+  yum: name=libselinux-python state=present update_cache=yes
+
 - name: Install Apache HTTP Server
   yum: name=httpd state=present update_cache=yes
 
