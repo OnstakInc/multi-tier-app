@@ -1,11 +1,11 @@
 <?php
 // HTTP
-define('HTTP_SERVER', 'http://{{ groups['app'][0] }}/admin/');
-define('HTTP_CATALOG', 'http://{{ groups['app'][0] }}/');
+define('HTTP_SERVER', 'http://{{ inventory_hostname }}/admin/');
+define('HTTP_CATALOG', 'http://{{ inventory_hostname }}/');
 
 // HTTPS
-define('HTTPS_SERVER', 'http://{{ groups['app'][0] }}/admin/');
-define('HTTPS_CATALOG', 'http://{{ groups['app'][0] }}/');
+define('HTTPS_SERVER', 'http://{{ inventory_hostname }}/admin/');
+define('HTTPS_CATALOG', 'http://{{ inventory_hostname }}/');
 
 // DIR
 define('DIR_APPLICATION', '/var/www/html/admin/');
@@ -25,7 +25,7 @@ define('DIR_UPLOAD', DIR_STORAGE . 'upload/');
 
 // DB
 define('DB_DRIVER', 'mysqli');
-define('DB_HOSTNAME', '{{ groups['db'][0] }}');
+define('DB_HOSTNAME', '{{ groups['db'][groups['app'].index(inventory_hostname] }}');
 define('DB_USERNAME', 'admin');
 define('DB_PASSWORD', 'Onstak@123');
 define('DB_DATABASE', 'opencart_db');
