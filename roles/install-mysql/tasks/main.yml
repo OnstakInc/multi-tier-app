@@ -1,6 +1,19 @@
 ---
-- name: Add MySQL Repositories
-  yum: name=https://dev.mysql.com/get/mysql57-community-release-el7-9.noarch.rpm state=present
+- name: Add MySQL Repositories For CentOS 6
+  block:
+    - name: Add MySQL Repositories For CentOS 6
+      yum: name=https://dev.mysql.com/get/mysql57-community-release-el6-9.noarch.rpm state=present update_cache=yes
+
+  when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "6") or 
+        (ansible_facts['distribution'] == "RHEL" and ansible_facts['distribution_major_version'] == "6")
+
+- name: Add MySQL Repositories For CentOS 7
+  block:
+    - name: Add MySQL Repositories For CentOS 7
+      yum: name=https://dev.mysql.com/get/mysql57-community-release-el7-9.noarch.rpm state=present update_cache=yes
+
+  when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7") or 
+        (ansible_facts['distribution'] == "RHEL" and ansible_facts['distribution_major_version'] == "7")
 
 - name: Install MySQL Server
   yum: name=mysql-community-server state=present

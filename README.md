@@ -26,6 +26,10 @@ ansible_user=root
 ansible_password=123456778
 ansible_sudo_pass=12345678
 ```
+* Run the following command to prepare the host machines
+```
+ansible-playbook playbooks/prepare.yml
+```
 * Run the following command to initialize the deployment
 ```
 ansible-playbook playbooks/deploy.yml

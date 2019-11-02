@@ -1,0 +1,4 @@
+---
+  - name: Install Ansible Dependencies
+    yum: name=libselinux-python state=present update_cache=yes
+    
