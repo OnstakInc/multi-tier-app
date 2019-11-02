@@ -1,6 +1,19 @@
 ---
-- name: Add PHP Repositories
-  yum: name=http://rpms.remirepo.net/enterprise/remi-release-7.rpm state=present update_cache=yes
+- name: Add PHP Repositories For CentOS 6
+  block:
+    - name: Add PHP Repositories
+      yum: name=http://rpms.remirepo.net/enterprise/remi-release-6.rpm state=present update_cache=yes
+
+  when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "6") or 
+        (ansible_facts['distribution'] == "RHEL" and ansible_facts['distribution_major_version'] == "6")
+
+- name: Add PHP Repositories For CentOS 7
+  block:
+    - name: Add PHP Repositories
+      yum: name=http://rpms.remirepo.net/enterprise/remi-release-7.rpm state=present update_cache=yes
+
+  when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7") or 
+        (ansible_facts['distribution'] == "RHEL" and ansible_facts['distribution_major_version'] == "7")
 
 - name : Install Base PHP Packages
   yum: name={{packages}} state=present enablerepo=remi-php73 update_cache=yes
