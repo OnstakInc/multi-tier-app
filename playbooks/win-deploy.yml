@@ -1,5 +1,6 @@
 ---
   - hosts: app
     roles:
-      - win-install-apache
-      - win-install-php
+      # - win-install-apache
+      # - win-install-php
+      - deploy-oc
