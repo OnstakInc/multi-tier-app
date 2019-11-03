@@ -19,7 +19,7 @@
 
 - name: Wait for 30 Seconds
   pause:
-    seconds: 30
+    seconds: 15
 
 - name: Copy vc_redist.x64_2013.zip
   win_copy:
