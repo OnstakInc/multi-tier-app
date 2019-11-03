@@ -62,12 +62,12 @@
 
     - name: Copy Config File
       win_template:
-        src: config.php.j2
+        src: win-config.php.j2
         dest: C:\Server\Apache24\htdocs\config.php
 
     - name: Copy Config File For Admin
       win_template:
-        src: admin-config.php.j2
+        src: win-admin-config.php.j2
         dest: C:\Server\Apache24\htdocs\admin\config.php
 
   when: "'Windows' in ansible_facts['distribution']"
