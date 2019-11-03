@@ -1,34 +1,40 @@
 ---
 - name: RHEL/CentOS Based Deployment
   block:
-    - name: Add Unzip Package
-      yum: name=unzip state=present
+    - name: Distribution Name
+      debug:
+        msg: "{{ ansible_facts['distribution'] }}"
 
-    - name: Add Wget Package
-      yum: name=wget state=present
+    # - name: Add Unzip Package
+    #   yum: name=unzip state=present
 
-    - name: Creates Directory
-      file: path=/var/www/html state=directory
+    # - name: Add Wget Package
+    #   yum: name=wget state=present
 
-    - name: Extract OpenCart Application
-      unarchive: src=opencart.zip dest=/var/www/html/
+    # - name: Creates Directory
+    #   file: path=/var/www/html state=directory
 
-    - name: Copy Config File
-      template: src=config.php.j2 dest=/var/www/html/config.php mode=0755
+    # - name: Extract OpenCart Application
+    #   unarchive: src=opencart.zip dest=/var/www/html/
 
-    - name: Copy Config File For Admin
-      template: src=admin-config.php.j2 dest=/var/www/html/admin/config.php mode=0755
+    # - name: Copy Config File
+    #   template: src=config.php.j2 dest=/var/www/html/config.php mode=0755
+
+    # - name: Copy Config File For Admin
+    #   template: src=admin-config.php.j2 dest=/var/www/html/admin/config.php mode=0755
         
-    - name: Set Apache Directory Permissions
-      file: dest=/var/www/html owner=apache group=apache recurse=yes
+    # - name: Set Apache Directory Permissions
+    #   file: dest=/var/www/html owner=apache group=apache recurse=yes
 
-    - name: Restart Apache Server
-      service: name=httpd state=restarted enabled=yes
-  when: ("'Windows' not in ansible_facts['distribution']")
+    # - name: Restart Apache Server
+    #   service: name=httpd state=restarted enabled=yes
+
+  when: "'Windows' not in ansible_facts['distribution']"
 
 - name: Windows Based Deployment
   block:
-    - name: Message
+    - name: Distribution Name
       debug:
-        msg: "Hello There!"
-  when: ("'Microsoft Windows' in ansible_facts['distribution']")
+        msg: "{{ ansible_facts['distribution'] }}"
+
+  when: "'Microsoft Windows' in ansible_facts['distribution']"
