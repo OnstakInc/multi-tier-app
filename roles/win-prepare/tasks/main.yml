@@ -14,12 +14,12 @@
     src: C:\Temp\vc_redist.x64_2015.zip
     dest: C:\Temp
 
+- name: Install vc_redist.x64_2015.zip
+  win_command: '"C:\Temp\vc_redist.x64_2015.exe" /install /passive /norestart'
+
 - name: Wait for 30 Seconds
   pause:
     seconds: 30
-
-- name: Install vc_redist.x64_2015.zip
-  win_command: '"C:\Temp\vc_redist.x64_2015.exe" /install /passive /norestart'
 
 - name: Copy vc_redist.x64_2013.zip
   win_copy:
