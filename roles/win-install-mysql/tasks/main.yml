@@ -1,4 +1,9 @@
 ---
+- name: Clean Old MySQL Deployment
+  win_file:
+    path: C:\Server\MySQL57
+    state: absent
+
 - name: Create Server Directory
   win_file:
     path: C:\Server
@@ -19,12 +24,38 @@
     src: C:\Temp\mysql-5.7.28-winx64.zip
     dest: C:\Server
 
+- name: Extract MySQL Server Zip
+  win_command: move C:\Server\mysql-5.7.28-winx64 C:\Server\MySQL57
+
 - name: Copy MySQL Configuration File
   win_copy:
     src: my.ini
-    dest: C:\Server\mysql-5.7.28-winx64\my.ini
+    dest: C:\Server\MySQL57\my.ini
 
-- name: Copy MySQL Initialization Scripts
+- name: Initialize MySQL Server
+  win_command: C:\Server\MySQL57\bin\mysqld.exe --initialize-insecure --user=root
+
+- name: Install MySQL Service
+  win_command: C:\Server\MySQL57\mysqld.exe --install MySQL57
+  ignore_errors: true
+
+- name: Start MySQL Service
+  win_service:
+    name: MySQL57
+    start_mode: auto
+    state: started
+
+- name: Allow MySQL Port 3306
+  win_firewall_rule:
+    name: MySQL_Port
+    localport: 3306
+    action: allow
+    direction: in
+    protocol: tcp
+    state: present
+    enabled: yes
+
+- name: Copy MySQL Database Dump Scripts
   win_copy:
     src: configure-mysql.bat
     dest: C:\Temp\configure-mysql.bat
@@ -34,18 +65,4 @@
     src: database.sql
     dest: C:\Temp\database.sql
 
-# - name: Start MySQL Service
-#   win_service:
-#     name: MySQL57
-#     start_mode: auto
-#     state: started
-
-# - name: Allow MySQL Port 3306
-#   win_firewall_rule:
-#     name: MySQL_Port
-#     localport: 3306
-#     action: allow
-#     direction: in
-#     protocol: tcp
-#     state: present
-#     enabled: yes
+    
