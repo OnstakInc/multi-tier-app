@@ -26,7 +26,7 @@
 
 - name: Move MySQL Server Files
   win_copy:
-    src: C:\Temp\mysql-5.7.28-winx64
+    src: C:\Temp\mysql-5.7.28-winx64\
     dest: C:\Server\MySQL57
     remote_src: yes
 
