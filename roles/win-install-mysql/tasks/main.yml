@@ -1,28 +1,28 @@
 ---
-- name: Clean Old MySQL Deployment
-  win_file:
-    path: C:\Server\MySQL57
-    state: absent
+# - name: Clean Old MySQL Deployment
+#   win_file:
+#     path: C:\Server\MySQL57
+#     state: absent
 
-- name: Create MySQL Server Directory
-  win_file:
-    path: C:\Server\MySQL57
-    state: directory
+# - name: Create MySQL Server Directory
+#   win_file:
+#     path: C:\Server\MySQL57
+#     state: directory
 
-- name: Create Temp Directory
-  win_file:
-    path: C:\Temp
-    state: directory
+# - name: Create Temp Directory
+#   win_file:
+#     path: C:\Temp
+#     state: directory
 
-- name: Download MySQL Server Zip
-  win_get_url:
-    url: https://cdn.mysql.com//Downloads/MySQL-5.7/mysql-5.7.28-winx64.zip
-    dest: C:\Temp\mysql-5.7.28-winx64.zip
+# - name: Download MySQL Server Zip
+#   win_get_url:
+#     url: https://cdn.mysql.com//Downloads/MySQL-5.7/mysql-5.7.28-winx64.zip
+#     dest: C:\Temp\mysql-5.7.28-winx64.zip
 
-- name: Extract MySQL Server Zip
-  win_unzip:
-    src: C:\Temp\mysql-5.7.28-winx64.zip
-    dest: C:\Temp
+# - name: Extract MySQL Server Zip
+#   win_unzip:
+#     src: C:\Temp\mysql-5.7.28-winx64.zip
+#     dest: C:\Temp
 
 - name: Move MySQL Server Files
   win_copy:
