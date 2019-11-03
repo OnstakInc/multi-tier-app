@@ -14,12 +14,12 @@
     src: C:\Temp\vc_redist.x64_2015.zip
     dest: C:\Temp
 
+- name: Wait for 30 Seconds
+  pause:
+    seconds: 30
+
 - name: Install vc_redist.x64_2015.zip
-  # win_command: '"C:\Temp\vc_redist.x64_2015.exe" /install /passive /norestart'
-  win_package:
-    path: C:\Temp\vc_redist.x64_2015.exe
-    product_id: '{d992c12e-cab2-426f-bde3-fb8c53950b0d}'
-    arguments: /install /passive /norestart
+  win_command: '"C:\Temp\vc_redist.x64_2015.exe" /install /passive /norestart'
 
 - name: Copy vc_redist.x64_2013.zip
   win_copy:
@@ -32,8 +32,4 @@
     dest: C:\Temp
 
 - name: Install vc_redist.x64_2013.zip
-  # win_command: '"C:\Temp\vc_redist.x64_2013.exe" /install /passive /norestart'
-  win_package:
-    path: C:\Temp\vc_redist.x64_2013.exe
-    product_id: '{050d4fc8-5d48-4b8f-8972-47c82c46020f}'
-    arguments: /install /passive /norestart
+  win_command: '"C:\Temp\vc_redist.x64_2013.exe" /install /passive /norestart'
