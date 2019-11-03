@@ -50,6 +50,11 @@
 
 - name: Windows Based Deployment
   block:
+    - name: Delete Default index.html File
+      win_file:
+        path: C:\Server\Apache24\htdocs\index.html
+        state: absent
+
     - name: Copy OpenCart Application
       win_copy:
         src: opencart.zip
