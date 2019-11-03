@@ -19,6 +19,11 @@
     src: C:\Temp\mysql-5.7.28-winx64.zip
     dest: C:\Server
 
+- name: Copy MySQL Configuration File
+  win_copy:
+    src: my.ini
+    dest: C:\Server\mysql-5.7.28-winx64\my.ini
+
 - name: Copy MySQL Initialization Scripts
   win_copy:
     src: configure-mysql.bat
