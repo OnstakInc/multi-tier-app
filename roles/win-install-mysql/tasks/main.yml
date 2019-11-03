@@ -1,31 +1,46 @@
 ---
+- name: Create Server Directory
+  win_file:
+    path: C:\Server
+    state: directory
+
 - name: Create Temp Directory
   win_file:
     path: C:\Temp
     state: directory
 
-- name: Download MySQL Server
+- name: Download MySQL Server Zip
   win_get_url:
-    url: https://cdn.mysql.com//Downloads/MySQLInstaller/mysql-installer-community-5.7.28.0.msi
-    dest: C:\Temp\mysql-installer-community.msi
+    url: https://cdn.mysql.com//Downloads/MySQL-5.7/mysql-5.7.28-winx64.zip
+    dest: C:\Temp\mysql-5.7.28-winx64.zip
 
-- name: Install MySQL Server
-  win_package:
-    path: C:\Temp\mysql-installer-community.msi
-    arguments: /passive
+- name: Extract MySQL Server Zip
+  win_unzip:
+    src: C:\Temp\mysql-5.7.28-winx64.zip
+    dest: C:\Server
 
-- name: Start MySQL Service
-  win_service:
-    name: MySQL57
-    start_mode: auto
-    state: started
+- name: Copy MySQL Initialization Scripts
+  win_copy:
+    src: configure-mysql.bat
+    dest: C:\Temp\configure-mysql.bat
 
-- name: Allow MySQL Port 3306
-  win_firewall_rule:
-    name: MySQL_Port
-    localport: 3306
-    action: allow
-    direction: in
-    protocol: tcp
-    state: present
-    enabled: yes
+- name: Copy MySQL Database Dump
+  win_copy:
+    src: database.sql
+    dest: C:\Temp\database.sql
+
+# - name: Start MySQL Service
+#   win_service:
+#     name: MySQL57
+#     start_mode: auto
+#     state: started
+
+# - name: Allow MySQL Port 3306
+#   win_firewall_rule:
+#     name: MySQL_Port
+#     localport: 3306
+#     action: allow
+#     direction: in
+#     protocol: tcp
+#     state: present
+#     enabled: yes
