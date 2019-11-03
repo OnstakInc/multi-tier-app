@@ -10,7 +10,9 @@
     dest: C:\Temp\mysql-installer-community.msi
 
 - name: Install MySQL Server
-  win_command: C:\Temp\mysql-installer-community.msi \passive
+  win_package:
+    path: C:\Temp\mysql-installer-community.msi
+    arguments: /passive
 
 - name: Start MySQL Service
   win_service:

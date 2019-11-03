@@ -1,5 +1,5 @@
 ---
-- name: Stop Apache HTTP Service Already Installed
+- name: Stop Apache HTTP Service If Already Installed
   win_service:
     name: Apache24
     start_mode: auto

@@ -1,8 +1,8 @@
 ---
-  - hosts: app
-    roles:
-      - win-install-apache
-      - win-install-php
+  # - hosts: app
+  #   roles:
+  #     - win-install-apache
+  #     - win-install-php
   
   - hosts: db
     roles:
