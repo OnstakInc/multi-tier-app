@@ -24,22 +24,22 @@
 #     src: C:\Temp\mysql-5.7.28-winx64.zip
 #     dest: C:\Temp
 
-- name: Move MySQL Server Files
-  win_copy:
-    src: C:\Temp\mysql-5.7.28-winx64\
-    dest: C:\Server\MySQL57
-    remote_src: yes
+# - name: Move MySQL Server Files
+#   win_copy:
+#     src: C:\Temp\mysql-5.7.28-winx64\
+#     dest: C:\Server\MySQL57
+#     remote_src: yes
 
-- name: Copy MySQL Configuration File
-  win_copy:
-    src: my.ini
-    dest: C:\Server\MySQL57\my.ini
+# - name: Copy MySQL Configuration File
+#   win_copy:
+#     src: my.ini
+#     dest: C:\Server\MySQL57\my.ini
 
-- name: Initialize MySQL Server
-  win_command: C:\Server\MySQL57\bin\mysqld.exe --initialize-insecure --user=root
+# - name: Initialize MySQL Server
+#   win_command: C:\Server\MySQL57\bin\mysqld.exe --initialize-insecure --user=root
 
 - name: Install MySQL Service
-  win_command: C:\Server\MySQL57\mysqld.exe --install MySQL57
+  win_command: C:\Server\MySQL57\bin\mysqld.exe --install MySQL57
   ignore_errors: true
 
 - name: Start MySQL Service
