@@ -1,0 +1,23 @@
+---
+- name: Create Server Directory
+  win_file:
+    path: C:\Server
+    state: directory
+
+- name: Create Temp Directory
+  win_file:
+    path: C:\Temp
+    state: directory
+
+- name: Download XAMMP Server
+  win_get_url:
+    url: https://downloadsapachefriends.global.ssl.fastly.net/7.1.33/xampp-windows-x64-7.1.33-0-VC14-installer.exe?from_af=true
+    dest: C:\Temp\xammp.exe
+
+- name: Extract vc_redist.x64.zip
+  win_command: 'C:\Temp\xammp.exe --mode unattended'
+
+- name: Remove Temp Directory
+  win_file:
+    path: C:\Temp
+    state: absent
