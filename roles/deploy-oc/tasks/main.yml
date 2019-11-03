@@ -24,9 +24,10 @@
 
     - name: Restart Apache Server
       service: name=httpd state=restarted enabled=yes
-  when: "'Windows' not in ansible_facts['distribution']"
+  when: ("'Windows' not in ansible_facts['distribution']")
 
 - name: Windows Based Deployment
   block:
-
-  when: "'Microsoft Windows' in ansible_facts['distribution']"
+    - debug:
+      msg: "Hello There!"
+  when: ("'Microsoft Windows' in ansible_facts['distribution']")
