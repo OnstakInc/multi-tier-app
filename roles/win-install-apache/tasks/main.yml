@@ -24,6 +24,10 @@
     src: httpd.conf.j2
     dest: C:\Server\Apache24\conf\httpd.conf
 
+- win_nssm:
+    name: Apache24
+    application: C:\Server\Apache24\bin\httpd.exe
+
 - name: Remove Temp Directory
   win_file:
     path: C:\Temp
