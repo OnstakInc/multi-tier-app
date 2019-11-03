@@ -6,7 +6,7 @@
 
 - name: Create Temp Directory
   win_file:
-    path: C:\Temp
+    path: C:\Temp\php
     state: directory
 
 - name: Download PHP Binaries
@@ -17,7 +17,7 @@
 - name: Extract Apache HTTP Server
   win_unzip:
     src: C:\Temp\php.zip
-    dest: C:\Server\php-7.3.11
+    dest: C:\Server\php
 
 - name: Remove Temp Directory
   win_file:
