@@ -76,3 +76,4 @@
 
 - name: Install MySQL Service
   script: C:\\Temp\\configure-mysql.bat
+  remote_src: yes
