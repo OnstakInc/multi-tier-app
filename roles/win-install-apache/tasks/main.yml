@@ -41,6 +41,26 @@
     start_mode: auto
     state: started
 
+- name: Allow HTTP Port 80
+  win_firewall_rule:
+    name: HTTP_Port
+    localport: 80
+    action: allow
+    direction: in
+    protocol: tcp
+    state: present
+    enabled: yes
+
+- name: Allow HTTPS Port 443
+  win_firewall_rule:
+    name: HTTPS_Port
+    localport: 443
+    action: allow
+    direction: in
+    protocol: tcp
+    state: present
+    enabled: yes
+
 - name: Remove Temp Directory
   win_file:
     path: C:\Temp
