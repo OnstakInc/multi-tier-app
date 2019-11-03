@@ -1,12 +1,12 @@
 ---
 - name: Create Server Directory
   win_file:
-    path: C:\Server
+    path: C:\Server\php
     state: directory
 
 - name: Create Temp Directory
   win_file:
-    path: C:\Temp\php
+    path: C:\Temp
     state: directory
 
 - name: Download PHP Binaries
