@@ -1,7 +1,7 @@
 ---
 - name: RHEL/CentOS Based Deployment
   block:
-    - name: Distribution Name
+    - name: Linux Distribution
       debug:
         msg: "{{ ansible_facts['distribution'] }}"
 
@@ -33,8 +33,8 @@
 
 - name: Windows Based Deployment
   block:
-    - name: Distribution Name
+    - name: Windows Distribution
       debug:
         msg: "{{ ansible_facts['distribution'] }}"
 
-  when: "'Microsoft Windows' in ansible_facts['distribution']"
+  when: "'Windows' in ansible_facts['distribution']"
