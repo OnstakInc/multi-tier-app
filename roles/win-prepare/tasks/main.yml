@@ -14,8 +14,8 @@
     src: C:\Temp\vc_redist.x64.zip
     dest: C:\Temp
 
-- name: Extract vc_redist.x64.zip
-  win_command: '"C:\Temp\vc_redist.x64.exe" /install /quite /norestart'
+- name: Install vc_redist.x64.zip
+  win_command: '"C:\Temp\vc_redist.x64.exe" /install /passive /norestart'
 
 - name: Remove Temp Directory
   win_file:
