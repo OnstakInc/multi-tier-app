@@ -25,7 +25,7 @@
     dest: C:\Server\Apache24\conf\httpd.conf
 
 - name: Install Apache HTTP Service
-  win_shell: 'C:\Server\Apache24\bin\httpd.exe -k install -n "Apache24"'
+  win_command: C:\Server\Apache24\bin\httpd.exe -k install -n "Apache24"
 
 - name: Remove Temp Directory
   win_file:

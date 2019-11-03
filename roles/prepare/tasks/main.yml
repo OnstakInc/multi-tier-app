@@ -1,20 +1,20 @@
 ---
-  - name: Install Ansible Dependencies
-    yum: name=libselinux-python state=present update_cache=yes
+- name: Install Ansible Dependencies
+  yum: name=libselinux-python state=present update_cache=yes
 
-  - name: Install EPEL Repositories
-    block:
-      - name: Install EPEL Repositories For CentOS 6
-        yum: name=https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm state=present update_cache=yes
+- name: Install EPEL Repositories
+  block:
+    - name: Install EPEL Repositories For CentOS 6
+      yum: name=https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm state=present update_cache=yes
 
-    when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "6") or 
-          (ansible_facts['distribution'] == "RHEL" and ansible_facts['distribution_major_version'] == "6")
+  when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "6") or 
+        (ansible_facts['distribution'] == "RHEL" and ansible_facts['distribution_major_version'] == "6")
 
-  - name: Install EPEL Repositories For CentOS 7
-    block:
-      - name: Install EPEL Repositories For CentOS 7
-        yum: name=https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm state=present update_cache=yes
+- name: Install EPEL Repositories For CentOS 7
+  block:
+    - name: Install EPEL Repositories For CentOS 7
+      yum: name=https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm state=present update_cache=yes
 
-    when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7") or 
-          (ansible_facts['distribution'] == "RHEL" and ansible_facts['distribution_major_version'] == "7")
+  when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7") or 
+        (ansible_facts['distribution'] == "RHEL" and ansible_facts['distribution_major_version'] == "7")
       

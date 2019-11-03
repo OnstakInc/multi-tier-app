@@ -1,0 +1,23 @@
+---
+- name: Create Temp Directory
+  win_file:
+    path: C:\Temp
+    state: directory
+
+- name: Copy vc_redist.x64.zip
+  win_copy:
+    src: vc_redist.x64.zip
+    dest: C:\Temp\vc_redist.x64.zip
+
+- name: Extract vc_redist.x64.zip
+  win_unzip:
+    src: C:\Temp\vc_redist.x64.zip
+    dest: C:\Temp
+
+- name: Extract vc_redist.x64.zip
+  win_command: '"C:\Temp\vc_redist.x64.exe" /install /passive /norestart'
+
+- name: Remove Temp Directory
+  win_file:
+    path: C:\Temp
+    state: absent
