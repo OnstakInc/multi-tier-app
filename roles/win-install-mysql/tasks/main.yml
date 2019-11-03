@@ -1,4 +1,10 @@
 ---
+# - name: Stop MySQL Service If Already Installed
+#   win_service:
+#     name: MySQL57
+#     start_mode: auto
+#     state: stopped
+
 # - name: Clean Old MySQL Deployment
 #   win_file:
 #     path: C:\Server\MySQL57
@@ -24,7 +30,7 @@
 #     src: C:\Temp\mysql-5.7.28-winx64.zip
 #     dest: C:\Temp
 
-# - name: Move MySQL Server Files
+# - name: Install MySQL Server
 #   win_copy:
 #     src: C:\Temp\mysql-5.7.28-winx64\
 #     dest: C:\Server\MySQL57
@@ -68,3 +74,5 @@
     src: database.sql
     dest: C:\Temp\database.sql
 
+- name: Install MySQL Service
+  script: C:\Temp\configure-mysql.bat
