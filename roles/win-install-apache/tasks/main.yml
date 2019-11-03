@@ -1,0 +1,25 @@
+---
+- name: Create Server Directory
+  win_file:
+    path: C:\Server
+    state: directory
+
+- name: Create Temp Directory
+  win_file:
+    path: C:\Temp
+    state: directory
+
+- name: Download Apache HTTP Server
+  win_get_url:
+    url: https://www.apachelounge.com/download/VS16/binaries/httpd-2.4.41-win64-VS16.zip
+    dest: C:\Temp\apache.zip
+
+- name: Extract Apache HTTP Server
+  win_unzip:
+    src: C:\Temp\apache.zip
+    dest: C:\Server
+
+- name: Remove Temp Directory
+  win_file:
+    path: C:\Temp
+    state: absent
