@@ -75,4 +75,4 @@
     dest: C:\Temp\database.sql
 
 - name: Install MySQL Service
-  script: C:\Temp\configure-mysql.bat
+  script: C:\\Temp\\configure-mysql.bat
