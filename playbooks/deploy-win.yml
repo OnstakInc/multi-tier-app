@@ -1,5 +1,4 @@
 ---
   - hosts: app
-    become: true
     roles:
       - win-install-apache
