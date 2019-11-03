@@ -1,0 +1,5 @@
+---
+  - hosts: app
+    roles:
+      - win-install-apache
+      - win-install-php

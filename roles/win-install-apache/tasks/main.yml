@@ -61,7 +61,3 @@
     state: present
     enabled: yes
 
-- name: Remove Temp Directory
-  win_file:
-    path: C:\Temp
-    state: absent
