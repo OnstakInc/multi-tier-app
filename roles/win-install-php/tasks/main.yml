@@ -8,12 +8,7 @@
   win_file:
     path: C:\Temp
     state: directory
-
-# - name: Download PHP Binaries
-#   win_get_url:
-#     url: https://windows.php.net/downloads/releases/php-7.3.11-Win32-VC15-x64.zip
-#     dest: C:\Temp\php.zip
-
+    
 - name: Copy PHP Binaries Zip
   win_copy:
     src: php-7.3.11.zip
@@ -23,6 +18,16 @@
   win_unzip:
     src: C:\Temp\php.zip
     dest: C:\Server\php
+
+- name: Copy Apache HTTP Configuration File
+  win_template:
+    src: httpd.conf.j2
+    dest: C:\Server\Apache24\conf\httpd.conf
+
+- name: Copy PHP Configuration File
+  win_template:
+    src: php.ini.j2
+    dest: C:\Server\php\php.ini
 
 - name: Remove Temp Directory
   win_file:

@@ -19,6 +19,11 @@
     src: C:\Temp\apache.zip
     dest: C:\Server
 
+- name: Copy Apache HTTP Configuration File
+  win_template:
+    src: httpd.conf.j2
+    dest: C:\Server\Apache24\conf\httpd.conf
+
 - name: Remove Temp Directory
   win_file:
     path: C:\Temp
