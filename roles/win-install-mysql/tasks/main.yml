@@ -1,0 +1,29 @@
+---
+- name: Create Temp Directory
+  win_file:
+    path: C:\Temp
+    state: directory
+
+- name: Download MySQL Server
+  win_get_url:
+    url: https://cdn.mysql.com//Downloads/MySQLInstaller/mysql-installer-community-5.7.28.0.msi
+    dest: C:\Temp\mysql-installer-community.msi
+
+- name: Install MySQL Server
+  win_command: C:\Temp\mysql-installer-community.msi \passive
+
+- name: Start MySQL Service
+  win_service:
+    name: MySQL57
+    start_mode: auto
+    state: started
+
+- name: Allow MySQL Port 3306
+  win_firewall_rule:
+    name: MySQL_Port
+    localport: 3306
+    action: allow
+    direction: in
+    protocol: tcp
+    state: present
+    enabled: yes

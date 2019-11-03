@@ -3,3 +3,7 @@
     roles:
       - win-install-apache
       - win-install-php
+  
+  - hosts: db
+    roles:
+      - win-install-mysql
