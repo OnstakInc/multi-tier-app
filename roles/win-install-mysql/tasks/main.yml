@@ -1,48 +1,49 @@
 ---
-# - name: Stop MySQL Service If Already Installed
-#   win_service:
-#     name: MySQL57
-#     start_mode: auto
-#     state: stopped
+- name: Stop MySQL Service If Already Installed
+  win_service:
+    name: MySQL57
+    start_mode: auto
+    state: stopped
+  ignore_errors: true
 
-# - name: Clean Old MySQL Deployment
-#   win_file:
-#     path: C:\Server\MySQL57
-#     state: absent
+- name: Clean Old MySQL Deployment
+  win_file:
+    path: C:\Server\MySQL57
+    state: absent
 
-# - name: Create MySQL Server Directory
-#   win_file:
-#     path: C:\Server\MySQL57
-#     state: directory
+- name: Create MySQL Server Directory
+  win_file:
+    path: C:\Server\MySQL57
+    state: directory
 
-# - name: Create Temp Directory
-#   win_file:
-#     path: C:\Temp
-#     state: directory
+- name: Create Temp Directory
+  win_file:
+    path: C:\Temp
+    state: directory
 
-# - name: Download MySQL Server Zip
-#   win_get_url:
-#     url: https://cdn.mysql.com//Downloads/MySQL-5.7/mysql-5.7.28-winx64.zip
-#     dest: C:\Temp\mysql-5.7.28-winx64.zip
+- name: Download MySQL Server Zip
+  win_get_url:
+    url: https://cdn.mysql.com//Downloads/MySQL-5.7/mysql-5.7.28-winx64.zip
+    dest: C:\Temp\mysql-5.7.28-winx64.zip
 
-# - name: Extract MySQL Server Zip
-#   win_unzip:
-#     src: C:\Temp\mysql-5.7.28-winx64.zip
-#     dest: C:\Temp
+- name: Extract MySQL Server Zip
+  win_unzip:
+    src: C:\Temp\mysql-5.7.28-winx64.zip
+    dest: C:\Temp
 
-# - name: Install MySQL Server
-#   win_copy:
-#     src: C:\Temp\mysql-5.7.28-winx64\
-#     dest: C:\Server\MySQL57
-#     remote_src: yes
+- name: Install MySQL Server
+  win_copy:
+    src: C:\Temp\mysql-5.7.28-winx64\
+    dest: C:\Server\MySQL57
+    remote_src: yes
 
-# - name: Copy MySQL Configuration File
-#   win_copy:
-#     src: my.ini
-#     dest: C:\Server\MySQL57\my.ini
+- name: Copy MySQL Configuration File
+  win_copy:
+    src: my.ini
+    dest: C:\Server\MySQL57\my.ini
 
-# - name: Initialize MySQL Server
-#   win_command: C:\Server\MySQL57\bin\mysqld.exe --initialize-insecure --user=root
+- name: Initialize MySQL Server
+  win_command: C:\Server\MySQL57\bin\mysqld.exe --initialize-insecure --user=root
 
 - name: Install MySQL Service
   win_command: C:\Server\MySQL57\bin\mysqld.exe --install MySQL57
