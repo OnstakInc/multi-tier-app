@@ -75,5 +75,4 @@
     dest: C:\Temp\database.sql
 
 - name: Install MySQL Service
-  script: C:\\Temp\\configure-mysql.bat
-  remote_src: yes
+  win_command: C:\Temp\configure-mysql.bat
