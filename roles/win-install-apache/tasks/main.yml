@@ -33,6 +33,7 @@
 
 - name: Install Apache HTTP Service
   win_command: C:\Server\Apache24\bin\httpd.exe -k install -n "Apache24"
+  ignore_errors: true
 
 - name: Start Apache HTTP Service
   win_service:
