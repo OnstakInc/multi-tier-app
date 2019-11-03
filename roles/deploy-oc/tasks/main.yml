@@ -24,18 +24,9 @@
 
     - name: Restart Apache Server
       service: name=httpd state=restarted enabled=yes
-      
   when: "'Windows' not in ansible_facts['distribution']"
 
 - name: Windows Based Deployment
   block:
-    - debug:
-      msg: "{{ hostvars[inventory_hostname].ansible_distribution }}"
-    
-    - debug:
-      msg: "{{ hostvars[inventory_hostname].ansible_distribution_major_version }}"
-
-    - debug:
-      msg: "{{ hostvars[inventory_hostname].ansible_distribution_version }}"
 
   when: "'Microsoft Windows' in ansible_facts['distribution']"
