@@ -1,7 +1,7 @@
 ---
 - name: Install EPEL Repositories
   block:
-    - name: Install EPEL Repositories For CentOS 6
+    - name: Install EPEL 6 Repositories
       yum: name=https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm state=present update_cache=yes
 
   when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "6") or 
@@ -9,7 +9,7 @@
 
 - name: Install EPEL Repositories For CentOS 7
   block:
-    - name: Install EPEL Repositories For CentOS 7
+    - name: Install EPEL 7 Repositories
       yum: name=https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm state=present update_cache=yes
 
   when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7") or 
