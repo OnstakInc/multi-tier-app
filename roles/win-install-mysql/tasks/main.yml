@@ -75,5 +75,5 @@
     src: database.sql
     dest: C:\Temp\database.sql
 
-- name: Install MySQL Service
+- name: Run Database Dump Script
   win_command: C:\Temp\configure-mysql.bat
