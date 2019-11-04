@@ -1,7 +1,4 @@
 ---
-- name: Install Ansible Dependencies
-  yum: name=libselinux-python state=present update_cache=yes
-
 - name: Install EPEL Repositories
   block:
     - name: Install EPEL Repositories For CentOS 6
@@ -18,3 +15,5 @@
   when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7") or 
         (ansible_facts['distribution'] == "RHEL" and ansible_facts['distribution_major_version'] == "7")
       
+- name: Install Ansible Dependencies
+  yum: name=libselinux-python state=present update_cache=yes
