@@ -1,7 +1,7 @@
 ---
 - name: Distribution Name
   debug:
-    msg: ansible_facts['distribution']
+    msg: "{{ ansible_facts['distribution'] }}"
 
 # - name: Install EPEL Repositories
 #   block:
