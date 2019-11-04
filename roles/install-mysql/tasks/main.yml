@@ -5,7 +5,7 @@
       yum: name=https://dev.mysql.com/get/mysql57-community-release-el6-9.noarch.rpm state=present update_cache=yes
 
   when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "6") or 
-        (ansible_facts['distribution'] == "RHEL" and ansible_facts['distribution_major_version'] == "6")
+        (ansible_facts['distribution'] == "RedHat" and ansible_facts['distribution_major_version'] == "6")
 
 - name: Add MySQL Repositories For CentOS 7
   block:
@@ -13,7 +13,7 @@
       yum: name=https://dev.mysql.com/get/mysql57-community-release-el7-9.noarch.rpm state=present update_cache=yes
 
   when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7") or 
-        (ansible_facts['distribution'] == "RHEL" and ansible_facts['distribution_major_version'] == "7")
+        (ansible_facts['distribution'] == "RedHat" and ansible_facts['distribution_major_version'] == "7")
 
 - name: Install MySQL Server
   yum: name=mysql-community-server state=present
@@ -30,7 +30,7 @@
       copy: src=centos-6.my.cnf dest=/etc/my.cnf mode=0644
 
   when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "6") or 
-        (ansible_facts['distribution'] == "RHEL" and ansible_facts['distribution_major_version'] == "6")
+        (ansible_facts['distribution'] == "RedHat" and ansible_facts['distribution_major_version'] == "6")
 
 - name: Start and Enable MySQL Service
   service: name=mysqld state=restarted enabled=yes
@@ -63,7 +63,7 @@
       command: "firewall-cmd --reload"
 
   when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7") or 
-        (ansible_facts['distribution'] == "RHEL" and ansible_facts['distribution_major_version'] == "7")
+        (ansible_facts['distribution'] == "RedHat" and ansible_facts['distribution_major_version'] == "7")
 
 - name: Configure iptables Rules
   block:
@@ -74,4 +74,4 @@
       command: "service iptables save"
 
   when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "6") or 
-        (ansible_facts['distribution'] == "RHEL" and ansible_facts['distribution_major_version'] == "6")
+        (ansible_facts['distribution'] == "RedHat" and ansible_facts['distribution_major_version'] == "6")

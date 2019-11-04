@@ -27,7 +27,7 @@
       command: "firewall-cmd --reload"
 
   when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7") or 
-        (ansible_facts['distribution'] == "RHEL" and ansible_facts['distribution_major_version'] == "7")
+        (ansible_facts['distribution'] == "RedHat" and ansible_facts['distribution_major_version'] == "7")
 
 - name: Configure iptables Rules
   block:
@@ -41,4 +41,4 @@
       command: "service iptables save"
 
   when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "6") or 
-        (ansible_facts['distribution'] == "RHEL" and ansible_facts['distribution_major_version'] == "6")
+        (ansible_facts['distribution'] == "RedHat" and ansible_facts['distribution_major_version'] == "6")
