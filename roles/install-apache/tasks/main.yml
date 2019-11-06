@@ -6,7 +6,7 @@
   shell: setenforce 0
   ignore_errors: yes
 
-- name: Update SeLinux Configurations --
+- name: Update SeLinux Configurations
   lineinfile: 
     dest: /etc/selinux/config 
     regexp: '^SELINUX=enforcing$' 
