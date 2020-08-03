@@ -25,6 +25,7 @@
 
     - name: Reload firewalld Service
       command: "firewall-cmd --reload"
+      ignore_errors: yes
 
   when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7") or 
         (ansible_facts['distribution'] == "RedHat" and ansible_facts['distribution_major_version'] == "7")
