@@ -1,0 +1,11 @@
+---
+  - hosts: all
+    become: true
+    roles:
+      - install-php
+      - install-apache
+
+  - hosts: all
+    become: true
+    roles:
+      - install-mysql
