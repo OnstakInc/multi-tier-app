@@ -1,11 +1,11 @@
 <?php
 // HTTP
-define('HTTP_SERVER', 'http://{{ inventory_hostname }}/admin/');
-define('HTTP_CATALOG', 'http://{{ inventory_hostname }}/');
+define('HTTP_SERVER', 'http://' . $_SERVER['SERVER_NAME'] . '/admin/');
+define('HTTP_CATALOG', 'http://' . $_SERVER['SERVER_NAME'] . '/');
 
 // HTTPS
-define('HTTPS_SERVER', 'http://{{ inventory_hostname }}/admin/');
-define('HTTPS_CATALOG', 'http://{{ inventory_hostname }}/');
+define('HTTPS_SERVER', 'https://' . $_SERVER['SERVER_NAME'] . '/admin/');
+define('HTTPS_CATALOG', 'https://' . $_SERVER['SERVER_NAME'] . '/');
 
 // DIR
 define('DIR_APPLICATION', '/var/www/html/admin/');
