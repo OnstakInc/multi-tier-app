@@ -19,3 +19,8 @@
         debug:
           msg: "{{ morpheus['instance']['apps'][0]['instances'][0]['containers'][0]['server']['internalIp'] }}"
         ignore_errors: true
+
+      - name: Dump Morpheus Filter
+        debug:
+          msg: "{% for instance in morpheus['instance']['apps'][0]['instances'] if 'DB' in instance.displayName %}{{ instances['container']['internalIp'] }}{% endfor %}"
+        ignore_errors: true
