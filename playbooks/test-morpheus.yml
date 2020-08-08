@@ -4,4 +4,4 @@
     tasks:
       - name: Dump Morpheus Dict
         debug:
-          msg: morpheus['instance']['name']
+          msg: {{ morpheus['instance']['name'] }}
