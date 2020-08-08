@@ -22,15 +22,15 @@
 
       - name: Dump Morpheus Filter DB
         debug:
-          msg: "{% for instance in morpheus['instance']['apps'][0]['instances'] if 'DB' in instance.displayName %}{{ instances['container']['internalIp'] }}{% endfor %}"
+          msg: "{% for instance in morpheus['instance']['apps'][0]['instances'] if 'DB' in instance.displayName %}{{ instance['container']['internalIp'] }}{% endfor %}"
         ignore_errors: true
 
       - name: Dump Morpheus Filter App
         debug:
-          msg: "{% for instance in morpheus['instance']['apps'][0]['instances'] if 'App' in instance.displayName %}{{ instances['container']['internalIp'] }}{% endfor %}"
+          msg: "{% for instance in morpheus['instance']['apps'][0]['instances'] if 'App' in instance.displayName %}{{ instance['container']['internalIp'] }}{% endfor %}"
         ignore_errors: true
 
       - name: Dump Morpheus Filter Web
         debug:
-          msg: "{% for instance in morpheus['instance']['apps'][0]['instances'] if 'Web' in instance.displayName %}{{ instances['container']['internalIp'] }}{% endfor %}"
+          msg: "{% for instance in morpheus['instance']['apps'][0]['instances'] if 'Web' in instance.displayName %}{{ instance['container']['internalIp'] }}{% endfor %}"
         ignore_errors: true
