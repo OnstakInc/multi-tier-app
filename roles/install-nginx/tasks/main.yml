@@ -32,6 +32,7 @@
 
     - name: Reload firewalld Service
       command: "firewall-cmd --reload"
+      ignore_errors: yes
 
   when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7") or 
         (ansible_facts['distribution'] == "RHEL" and ansible_facts['distribution_major_version'] == "7")
@@ -46,6 +47,7 @@
 
     - name: Reload iptables Service
       command: "service iptables save"
+      ignore_errors: yes
 
   when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "6") or 
         (ansible_facts['distribution'] == "RHEL" and ansible_facts['distribution_major_version'] == "6")
