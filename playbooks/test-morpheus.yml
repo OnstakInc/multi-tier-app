@@ -3,24 +3,23 @@
     become: true
 
     vars:
-      groups:
-        web: 
-          - "my_web_ip_address"
-        app: 
-          - "my_app_ip_address_01"
-          - "my_web_ip_address_02"
-        db: 
-          - "my_db_ip_address"
+      web_tier: 
+        - "my_web_ip_address"
+      app_tier: 
+        - "my_app_ip_address_01"
+        - "my_web_ip_address_02"
+      db_tier: 
+        - "my_db_ip_address"
 
     tasks:
 
       - name: Variable Test
         debug:
-          msg: "{{ groups }}"
+          msg: "{{ web_tier }}"
         ignore_errors: true
-      - name: Variable Test
+      - name: Variable Test 2
         debug:
-          msg: "{{ groups['app'] }}"
+          msg: "{{ app_tier }}"
         ignore_errors: true
 
       # - name: Dump Morpheus Dict Full
