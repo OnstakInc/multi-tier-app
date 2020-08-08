@@ -3,23 +3,20 @@
     become: true
 
     vars:
-      web_tier: 
-        - "my_web_ip_address"
       app_tier: 
         - "my_app_ip_address_01"
-        - "my_web_ip_address_02"
-      db_tier: 
-        - "my_db_ip_address"
+        - "{{ morpheus['instance'] }}"
+      db_tier: "my_db_ip_address"
 
     tasks:
 
       - name: Variable Test
         debug:
-          msg: "{{ web_tier }}"
+          msg: "{{ app_tier }}"
         ignore_errors: true
       - name: Variable Test 2
         debug:
-          msg: "{{ app_tier }}"
+          msg: "{{ db_tier }}"
         ignore_errors: true
 
       # - name: Dump Morpheus Dict Full
