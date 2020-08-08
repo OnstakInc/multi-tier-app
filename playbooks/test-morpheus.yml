@@ -13,9 +13,9 @@
 
       - name: Dump Morpheus Main Container
         debug:
-          msg: "{{ morpheus['instance']['apps'][0]['container']['internalIp'] }}"
+          msg: "{{ morpheus['instance']['apps'][0]['instances'][0]['container']['internalIp'] }}"
         ignore_errors: true
       - name: Dump Morpheus Main Container 2
         debug:
-          msg: "{{ morpheus['instance']['apps'][0]['containers'][0]['server']['internalIp'] }}"
+          msg: "{{ morpheus['instance']['apps'][0]['instances'][0]['containers'][0]['server']['internalIp'] }}"
         ignore_errors: true
