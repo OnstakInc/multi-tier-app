@@ -2,10 +2,8 @@
   - hosts: all
     become: true
     roles:
+      - prepare
+      - install-mysql
       - install-php
       - install-apache
-
-  - hosts: all
-    become: true
-    roles:
-      - install-mysql
+      - deploy-oc

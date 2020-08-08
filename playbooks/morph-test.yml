@@ -3,10 +3,9 @@
     become: true
 
     vars:
-      app_tier: 
-        - "my_app_ip_address_01"
-        - "{{ morpheus['instance'] }}"
-      db_tier: "my_db_ip_address"
+      app_tier:
+        - "{% for instance in morpheus['instance']['apps'][0]['instances'] if 'App01' in instance.displayName %}{{ instance['container']['internalIp'] }}{% endfor %}"
+      db_tier: "{% for instance in morpheus['instance']['apps'][0]['instances'] if 'DB' in instance.displayName %}{{ instance['container']['internalIp'] }}{% endfor %}"
 
     tasks:
 

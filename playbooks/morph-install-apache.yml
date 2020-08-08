@@ -1,0 +1,12 @@
+---
+  - hosts: all
+    become: true
+
+    vars:
+      db_tier: "{% for instance in morpheus['instance']['apps'][0]['instances'] if 'DB' in instance.displayName %}{{ instance['container']['internalIp'] }}{% endfor %}"
+      
+    roles:
+      - prepare
+      - install-php
+      - install-apache
+      - deploy-oc

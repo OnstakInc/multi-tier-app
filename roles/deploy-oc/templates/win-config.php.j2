@@ -22,7 +22,15 @@ define('DIR_UPLOAD', DIR_STORAGE . 'upload/');
 
 // DB
 define('DB_DRIVER', 'mysqli');
+
+{% if groups.db is defined %}
 define('DB_HOSTNAME', '{{ groups['db'][groups['app'].index(inventory_hostname)] }}');
+{% elif db_tier is defined %}
+define('DB_HOSTNAME', '{{ db_tier }}');
+{% else %}
+define('DB_HOSTNAME', '127.0.0.1');
+{% endif %}
+
 define('DB_USERNAME', 'admin');
 define('DB_PASSWORD', 'Onstak@123');
 define('DB_DATABASE', 'opencart_db');
