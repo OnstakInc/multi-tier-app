@@ -8,17 +8,6 @@
 - name: Start and Enable NGINX Service
   service: name=nginx state=started enabled=yes
 
-- name: Configure firewalld Rules
-  block:
-    - name: Allow HTTP Port 80
-      firewalld: port=80/tcp permanent=true state=enabled zone=public
-
-    - name: Add HTTPS Port 443
-      firewalld: port=443/tcp permanent=true state=enabled zone=public
-
-    - name: Reload firewalld Service
-      command: "firewall-cmd --reload"
-
   when: (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7") or 
         (ansible_facts['distribution'] == "RHEL" and ansible_facts['distribution_major_version'] == "7")
 
