@@ -10,6 +10,7 @@ tiers:
         - bootOrder
     instances:
       - instance:
+          name: OpenCartWeb
           type: centos
         clouds:
           VC-TECLAB-SJC:
@@ -75,7 +76,6 @@ tiers:
               id: 367
             group: {}
             lockedFields:
-              - instance.name
               - version
               - instance.layout.id
               - plan.id
@@ -83,6 +83,7 @@ tiers:
               - networks
               - volumes
               - config.resourcePoolId
+              - instance.name
   AppTier:
     linkedTiers: []
     tierIndex: 1
