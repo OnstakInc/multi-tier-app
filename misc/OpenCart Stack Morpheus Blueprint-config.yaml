@@ -1,0 +1,279 @@
+image: /assets/apps/template.png
+tiers:
+  WebTier:
+    linkedTiers:
+      - AppTier
+    tierIndex: 3
+    tier:
+      bootOrder: 2
+      lockedFields:
+        - bootOrder
+    instances:
+      - instance:
+          type: centos
+        clouds:
+          VC-TECLAB-SJC:
+            backup:
+              veeamManagedServer: ''
+              createBackup: false
+              jobAction: new
+              jobRetentionCount: 3
+              enabled: true
+              showScheduledBackupWarning: false
+            instance:
+              layout:
+                provisionTypeCode: vmware
+                code: vmware-centos-7.5-single
+                instanceVersion: '7.5'
+                name: VMware VM
+                id: 387
+              configEnabled: true
+              name: OpenCartWeb
+              allowExisting: false
+              type: centos
+              userGroup:
+                id: ''
+            networkInterfaces:
+              - ipMode: ''
+                primaryInterface: true
+                showNetworkPoolLabel: false
+                showNetworkDhcpLabel: true
+                network:
+                  idName: CN9K-V-0174-CLIQR
+                  id: network-78
+                  hasPool: false
+            workflow:
+              taskSetId: 5
+            volumes:
+              - volumeCustomizable: true
+                readonlyName: false
+                controllerId: 231
+                maxIOPS: null
+                displayOrder: 0
+                unitNumber: '0'
+                minStorage: 5368709120
+                configurableIOPS: false
+                controllerMountPoint: '231:0:4:0'
+                vId: 167
+                size: 20
+                name: root
+                rootVolume: true
+                storageType: 1
+                typeId: 1
+                id: 117
+                resizeable: true
+                datastoreId: autoCluster
+                maxStorage: 21474836480
+            lock:
+              config:
+                vmwareFolderId: true
+            config:
+              resourcePoolId: 6
+              createUser: true
+            plan:
+              code: vm-1024
+              id: 367
+            group: {}
+            lockedFields:
+              - instance.name
+              - version
+              - instance.layout.id
+              - plan.id
+              - config.vmwareFolderId
+              - networks
+              - volumes
+              - config.resourcePoolId
+  AppTier:
+    linkedTiers: []
+    tierIndex: 1
+    tier:
+      bootOrder: 1
+      lockedFields:
+        - bootOrder
+    instances:
+      - instance:
+          name: OpenCartApp01
+          type: centos
+        clouds:
+          VC-TECLAB-SJC:
+            backup:
+              veeamManagedServer: ''
+              createBackup: false
+              jobAction: new
+              jobRetentionCount: 3
+              enabled: true
+              providerBackupType: -1
+              showScheduledBackupWarning: false
+            instance:
+              layout:
+                provisionTypeCode: vmware
+                code: vmware-centos-7.5-single
+                instanceVersion: '7.5'
+                name: VMware VM
+                id: 387
+              configEnabled: true
+              name: OpenCartApp01
+              allowExisting: false
+              type: centos
+              userGroup:
+                id: ''
+            networkInterfaces:
+              - ipMode: ''
+                primaryInterface: true
+                showNetworkPoolLabel: false
+                showNetworkDhcpLabel: true
+                network:
+                  idName: CN9K-V-0174-CLIQR
+                  id: network-78
+                  hasPool: false
+            workflow:
+              taskSetId: 3
+            volumes:
+              - volumeCustomizable: true
+                readonlyName: false
+                controllerId: 231
+                maxIOPS: null
+                displayOrder: 0
+                unitNumber: '0'
+                minStorage: 5368709120
+                configurableIOPS: false
+                controllerMountPoint: '231:0:4:0'
+                vId: 167
+                size: 20
+                name: root
+                rootVolume: true
+                storageType: 1
+                typeId: 1
+                id: 117
+                resizeable: true
+                datastoreId: autoCluster
+                maxStorage: 21474836480
+            lock:
+              config:
+                hostId: true
+                vmwareFolderId: true
+            config:
+              resourcePoolId: 6
+              hostId: 2
+              createUser: true
+              vmwareFolderId: group-v5732
+            plan:
+              code: vm-1024
+              id: 367
+            group: {}
+            lockedFields:
+              - instance.name
+              - plan.id
+              - instance.layout.id
+              - version
+              - config.vmwareFolderId
+              - config.hostId
+              - config.resourcePoolId
+              - volumes
+              - networks
+  DatabaseTier:
+    linkedTiers:
+      - AppTier
+    tierIndex: 2
+    tier:
+      bootOrder: 0
+      lockedFields:
+        - bootOrder
+    instances:
+      - instance:
+          name: OpenCartDB
+          type: centos
+        clouds:
+          VC-TECLAB-SJC:
+            backup:
+              veeamManagedServer: ''
+              createBackup: false
+              jobAction: new
+              jobRetentionCount: 3
+              enabled: true
+              showScheduledBackupWarning: false
+            instance:
+              layout:
+                provisionTypeCode: vmware
+                code: vmware-centos-7.5-single
+                instanceVersion: '7.5'
+                name: VMware VM
+                id: 387
+              configEnabled: true
+              name: OpenCartDB
+              allowExisting: false
+              type: centos
+              userGroup:
+                id: ''
+            networkInterfaces:
+              - ipMode: ''
+                primaryInterface: true
+                showNetworkPoolLabel: false
+                showNetworkDhcpLabel: true
+                network:
+                  idName: CN9K-V-0174-CLIQR
+                  id: network-78
+                  hasPool: false
+            workflow:
+              taskSetId: 4
+              taskSet:
+                - null
+                - - null
+                  - null
+                  - null
+                  - null
+                  - null
+                  - null
+                  - taskOptions:
+                      ansibleOptions: ''
+            volumes:
+              - volumeCustomizable: true
+                readonlyName: false
+                controllerId: 231
+                maxIOPS: null
+                displayOrder: 0
+                unitNumber: '0'
+                minStorage: 5368709120
+                configurableIOPS: false
+                controllerMountPoint: '231:0:4:0'
+                vId: 167
+                size: 20
+                name: root
+                rootVolume: true
+                storageType: 1
+                typeId: 1
+                id: 117
+                resizeable: true
+                datastoreId: autoCluster
+                maxStorage: 21474836480
+            lock:
+              config:
+                hostId: true
+                vmwareFolderId: true
+            config:
+              resourcePoolId: 6
+              hostId: 2
+              createUser: true
+              vmwareFolderId: group-v5732
+            plan:
+              code: vm-1024
+              id: 367
+            group: {}
+            lockedFields:
+              - instance.name
+              - version
+              - instance.layout.id
+              - plan.id
+              - config.resourcePoolId
+              - volumes
+              - networks
+              - config.hostId
+              - config.vmwareFolderId
+name: OpenCart Stack Morpheus Blueprint
+description: ''
+templateImage: ''
+type: morpheus
+category: ''
+config:
+  isVpcSelectable: true
+  isEC2: false

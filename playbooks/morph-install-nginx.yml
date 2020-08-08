@@ -1,0 +1,11 @@
+---
+  - hosts: all
+    become: true
+
+    vars:
+      app_tier:
+        - "{% for instance in morpheus['instance']['apps'][0]['instances'] if 'App01' in instance.displayName %}{{ instance['container']['internalIp'] }}{% endfor %}"
+
+    roles:
+      - prepare
+      - install-nginx

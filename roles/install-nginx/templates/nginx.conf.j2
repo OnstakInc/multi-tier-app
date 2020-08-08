@@ -36,9 +36,17 @@ http {
     include /etc/nginx/conf.d/*.conf;
 
     upstream myapp01 {
+        {% if groups.app is defined %}
         {% for node in groups['app'] %}
-            server {{ node }}:80;
+        server {{ node }}:80;
         {% endfor %}
+        {% elif app_tier is defined %}
+        {% for node in app_tier %}
+        server {{ node }}:80;
+        {% endfor %}
+        {% else %}
+        127.0.0.1:80
+        {% endif %}
     }
 
     server {
