@@ -1,36 +1,57 @@
 ---
   - hosts: all
     become: true
+
+    vars:
+      groups:
+        web: 
+          - "my_web_ip_address"
+        app: 
+          - "my_app_ip_address_01"
+          - "my_web_ip_address_02"
+        db: 
+          - "my_db_ip_address"
+
     tasks:
-      - name: Dump Morpheus Dict Full
+
+      - name: Variable Test
         debug:
-          msg: "{{ morpheus }}"
+          msg: "{{ groups }}"
         ignore_errors: true
-      - name: Dump Morpheus Dict Instance
+      - name: Variable Test
         debug:
-          msg: "{{ morpheus['instance'] }}"
+          msg: "{{ groups['app'] }}"
         ignore_errors: true
 
-      - name: Dump Morpheus Main Container
-        debug:
-          msg: "{{ morpheus['instance']['apps'][0]['instances'][0]['container']['internalIp'] }}"
-        ignore_errors: true
-      - name: Dump Morpheus Main Container 2
-        debug:
-          msg: "{{ morpheus['instance']['apps'][0]['instances'][0]['containers'][0]['server']['internalIp'] }}"
-        ignore_errors: true
+      # - name: Dump Morpheus Dict Full
+      #   debug:
+      #     msg: "{{ morpheus }}"
+      #   ignore_errors: true
+      # - name: Dump Morpheus Dict Instance
+      #   debug:
+      #     msg: "{{ morpheus['instance'] }}"
+      #   ignore_errors: true
 
-      - name: Dump Morpheus Filter DB
-        debug:
-          msg: "{% for instance in morpheus['instance']['apps'][0]['instances'] if 'DB' in instance.displayName %}{{ instance['container']['internalIp'] }}{% endfor %}"
-        ignore_errors: true
+      # - name: Dump Morpheus Main Container
+      #   debug:
+      #     msg: "{{ morpheus['instance']['apps'][0]['instances'][0]['container']['internalIp'] }}"
+      #   ignore_errors: true
+      # - name: Dump Morpheus Main Container 2
+      #   debug:
+      #     msg: "{{ morpheus['instance']['apps'][0]['instances'][0]['containers'][0]['server']['internalIp'] }}"
+      #   ignore_errors: true
 
-      - name: Dump Morpheus Filter App
-        debug:
-          msg: "{% for instance in morpheus['instance']['apps'][0]['instances'] if 'App' in instance.displayName %}{{ instance['container']['internalIp'] }}{% endfor %}"
-        ignore_errors: true
+      # - name: Dump Morpheus Filter DB
+      #   debug:
+      #     msg: "{% for instance in morpheus['instance']['apps'][0]['instances'] if 'DB' in instance.displayName %}{{ instance['container']['internalIp'] }}{% endfor %}"
+      #   ignore_errors: true
 
-      - name: Dump Morpheus Filter Web
-        debug:
-          msg: "{% for instance in morpheus['instance']['apps'][0]['instances'] if 'Web' in instance.displayName %}{{ instance['container']['internalIp'] }}{% endfor %}"
-        ignore_errors: true
+      # - name: Dump Morpheus Filter App
+      #   debug:
+      #     msg: "{% for instance in morpheus['instance']['apps'][0]['instances'] if 'App' in instance.displayName %}{{ instance['container']['internalIp'] }}{% endfor %}"
+      #   ignore_errors: true
+
+      # - name: Dump Morpheus Filter Web
+      #   debug:
+      #     msg: "{% for instance in morpheus['instance']['apps'][0]['instances'] if 'Web' in instance.displayName %}{{ instance['container']['internalIp'] }}{% endfor %}"
+      #   ignore_errors: true
