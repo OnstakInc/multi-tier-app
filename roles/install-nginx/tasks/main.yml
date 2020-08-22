@@ -15,9 +15,11 @@
   block:
     - name: Allow HTTP Port 80
       firewalld: port=80/tcp permanent=true state=enabled zone=public
+      ignore_errors: yes
 
     - name: Add HTTPS Port 443
       firewalld: port=443/tcp permanent=true state=enabled zone=public
+      ignore_errors: yes
 
     - name: Reload firewalld Service
       command: "firewall-cmd --reload"
@@ -30,9 +32,11 @@
   block:
     - name: Allow HTTP Port 80
       iptables: chain=INPUT protocol=tcp match=tcp destination_port=80 jump=ACCEPT comment="Open port 80 for HTTP"
+      ignore_errors: yes
 
     - name: Allow HTTPS Port 443
       iptables: chain=INPUT protocol=tcp match=tcp destination_port=443 jump=ACCEPT comment="Open port 443 for HTTPS"
+      ignore_errors: yes
 
     - name: Reload iptables Service
       command: "service iptables save"

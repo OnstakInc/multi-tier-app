@@ -58,6 +58,7 @@
   block:
     - name: Allow MySQL Port 3306
       firewalld: port=3306/tcp permanent=true state=enabled zone=public
+      ignore_errors: yes
 
     - name: Reload firewalld Service
       command: "firewall-cmd --reload"
